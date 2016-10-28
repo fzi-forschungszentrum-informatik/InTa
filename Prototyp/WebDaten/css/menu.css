@@ -1,0 +1,542 @@
+﻿/**
+ * Copyright (C) 2014 Lorenz Haas
+ * Masterthesis
+ * - Erweiterung von Standardpräsentationssoftware zur Förderung der Publikumsinteraktion -
+ * Institut für Angewandte Informatik
+ * und Formale Beschreibungsverfahren
+ * des Karlsruher Instituts für Technologie
+ *
+ * Referent: Prof. Dr. Andreas Oberweis
+ * Betreuer: Dipl.-Inform.Wirt Sascha Alpers
+ *
+ * Karlsruhe, den 15 Juli 2014
+ *
+ */
+ 
+/******************************************************************
+Seitenspezifischer Stil: menu
+******************************************************************/
+
+/* Page */
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background-color:rgb(255,255,255); /*weiß*/
+  color:rgb(0,0,0);			/*schwarz*/
+  overflow:hidden;
+}
+
+#page 
+{
+      min-height: 100%;
+	  height: 100%;					/*IE*/
+      position:relative;
+}
+
+/* Header */
+#header
+{
+	height: 80px;
+	background-color:rgb(73,173,255);	/*blau*/
+	padding:0px 15px;	/*top, left*/
+	color: rgb(255,255,255); /*weiß*/
+    -webkit-box-shadow: rgb(136, 136, 136) 0px 0px 3px 0px;
+    box-shadow: rgb(136, 136, 136) 0px 0px 3px 0px;
+	
+}
+
+/* Content */
+#content
+{
+	padding: 15px 15px 15px 15px;
+}
+
+#form
+{
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	background-color:rgb(255,255,255);
+	width: 500px;
+	height: 220px;
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -250px;
+	margin-top: -20px;
+	border: 2px solid;
+	text-align:center;
+}
+
+h1
+{
+    color:rgb(0,0,0);	/*schwarz*/
+}
+
+/* Buttons */
+.button 
+{
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em; 
+    text-decoration: none;
+    border-radius: 7px;	/*abgerundete Ecken*/
+}
+
+/* BLUE */
+.blue
+{
+	background-color: rgb(73,173,255);	/*blau*/
+	color: #fff;	/*weiß*/ 
+	border: none rgba(0, 0, 0, 0);
+}
+
+.blue:hover,
+.blue:focus
+{
+	background-color:rgb(10,132,232);
+	color:rgb(255,255,255); 
+	border: none rgba(0, 0, 0, 0);
+}
+
+/* RED */
+.red
+{
+	background-color: rgb(255,0,0);	/*rot*/
+	color: #fff;	/*weiß*/ 
+	border: none rgba(0, 0, 0, 0);
+}
+
+.red:hover,
+.red:focus
+{
+	background-color:rgb(185,2,2);
+	color:rgb(255,255,255); 
+	border: none rgba(0, 0, 0, 0);
+}
+
+
+/* GREY */
+.grey
+{
+	background-color:transparent;
+	color:rgb(170,170,170);
+	border: 1px solid rgb(170,170,170);
+}
+
+.grey:hover,
+.grey:focus
+{
+	background-color:rgb(170,170,170);
+	color: #fff;	/*weiß*/  
+	border: none rgba(0, 0, 0, 0);
+}
+
+
+/* WHITE */
+.white
+{
+	background-color:transparent;
+	color:rgb(255,255,255); 
+	border: 1px solid rgb(255,255,255);
+}
+
+.white:hover,
+.white:focus
+{
+	background-color:rgb(255,255,255);
+	color:rgb(0,0,0);
+	border: none rgba(0, 0, 0, 0);
+}
+
+.ars-button 
+{
+    font-family: inherit;
+    font-size: 100%;
+    font-size: 90%; 
+    overflow: visible; 
+    padding: 0.5em 1em;
+    color: #fff; 
+    color: #fff; 
+    border: 1px solid #999;  
+    border: none rgba(0, 0, 0, 0);  
+    background-color: rgb(73,173,255);
+    text-decoration: none;
+    border-radius: 7px;
+}
+
+.ars-button-hover,
+.ars-button:hover,
+.ars-button:focus 
+{
+	background-image: -webkit-linear-gradient(top left, rgb(73,173,255) 0%, rgb(10,132,232) 100%); 
+	background-image: -moz-linear-gradient(right bottom, rgb(73,173,255) 0%, rgb(10,132,232) 100%); 
+	background-image: -o-linear-gradient(rgb(73,173,255) 0%, rgb(10,132,232) 100%); 
+	background-image: linear-gradient(rgb(73,173,255) 0%, rgb(10,132,232) 100%);
+}
+.ars-button:focus 
+{
+    outline: 0;
+}
+.ars-button-active,
+.ars-button:active 
+{
+    box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
+}
+
+.ars-button-primary,
+.ars-button-selected,
+a.ars-button-primary,
+a.ars-button-selected 
+{
+    background-color: rgb(73,173,255);
+    color: #fff;
+	font-weight:500;
+}
+
+.ars-button2
+{
+    background-color: rgb(73,173,255);
+    color: #fff;
+	font-weight:500;
+	border: 1px solid #FFF;
+	font-family: inherit;
+    font-size: 100%; 
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 7px;
+}
+
+.ars-button2-hover,
+.ars-button2:hover,
+.ars-button2:focus 
+{
+	background-image: -webkit-linear-gradient(top left, rgb(73,173,255) 0%, rgb(73,173,255) 100%); 
+	background-image: -moz-linear-gradient(right bottom, rgb(73,173,255) 0%, rgb(73,173,255) 100%); 
+	background-image: -o-linear-gradient(rgb(73,173,255) 0%, rgb(73,173,255) 100%); 
+	background-image: linear-gradient(rgb(73,173,255) 0%, rgb(73,173,255) 100%);
+	color:#ccc;
+}
+
+/* Form-Input */
+.textInput
+{
+	width:300px;
+}
+
+/* Form */
+.ars-form input[type="text"],
+.ars-form input[type="password"],
+.ars-form input[type="email"],
+.ars-form input[type="url"],
+.ars-form input[type="date"],
+.ars-form input[type="month"],
+.ars-form input[type="time"],
+.ars-form input[type="datetime"],
+.ars-form input[type="datetime-local"],
+.ars-form input[type="week"],
+.ars-form input[type="number"],
+.ars-form input[type="search"],
+.ars-form input[type="tel"],
+.ars-form input[type="color"],
+.ars-form select,
+.ars-form textarea 
+{
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+since IE8 won't execute CSS that contains a CSS3 selector.
+*/
+.ars-form input:not([type]) 
+{
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/* Chrome (as of v.32/34 on OS X) needs additional room for color to display. */
+/* May be able to remove this tweak as color inputs become more standardized across browsers. */
+.ars-form input[type="color"] 
+{
+    padding: 0.2em 0.5em;
+}
+
+
+.ars-form input[type="text"]:focus,
+.ars-form input[type="password"]:focus,
+.ars-form input[type="email"]:focus,
+.ars-form input[type="url"]:focus,
+.ars-form input[type="date"]:focus,
+.ars-form input[type="month"]:focus,
+.ars-form input[type="time"]:focus,
+.ars-form input[type="datetime"]:focus,
+.ars-form input[type="datetime-local"]:focus,
+.ars-form input[type="week"]:focus,
+.ars-form input[type="number"]:focus,
+.ars-form input[type="search"]:focus,
+.ars-form input[type="tel"]:focus,
+.ars-form input[type="color"]:focus,
+.ars-form select:focus,
+.ars-form textarea:focus 
+{
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+    /*border-color: #129FEA;*/
+	border-color: rgb(73,173,255);
+}
+
+/*
+Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+since IE8 won't execute CSS that contains a CSS3 selector.
+*/
+.ars-form input:not([type]):focus 
+{
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+    border-color: #129FEA;
+}
+
+/*
+Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+since IE8 won't execute CSS that contains a CSS3 selector.
+*/
+
+.ars-form input[readonly],
+.ars-form select[readonly],
+.ars-form textarea[readonly] 
+{
+    background: #eee; /* menu hover bg color */
+    color: #777; /* menu text color */
+    border-color: #ccc;
+}
+
+.ars-form input:focus:invalid,
+.ars-form textarea:focus:invalid,
+.ars-form select:focus:invalid 
+{
+    color: #b94a48;
+    border-color: #ee5f5b;
+}
+.ars-form input:focus:invalid:focus,
+.ars-form textarea:focus:invalid:focus,
+.ars-form select:focus:invalid:focus 
+{
+    border-color: #e9322d;
+}
+
+.ars-form select 
+{
+    border: 1px solid #ccc;
+    background-color: white;
+}
+.ars-form select[multiple] 
+{
+    height: auto;
+}
+.ars-form label 
+{
+    margin: 0.5em 0 0.2em;
+}
+.ars-form fieldset 
+{
+    margin: 0;
+    padding: 0.35em 0 0.75em;
+    border: 0;
+}
+.ars-form legend 
+{
+    display: block;
+    width: 100%;
+    padding: 0.3em 0;
+    margin-bottom: 0.3em;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.ars-form-stacked input[type="text"],
+.ars-form-stacked input[type="password"],
+.ars-form-stacked input[type="email"],
+.ars-form-stacked input[type="url"],
+.ars-form-stacked input[type="date"],
+.ars-form-stacked input[type="month"],
+.ars-form-stacked input[type="time"],
+.ars-form-stacked input[type="datetime"],
+.ars-form-stacked input[type="datetime-local"],
+.ars-form-stacked input[type="week"],
+.ars-form-stacked input[type="number"],
+.ars-form-stacked input[type="search"],
+.ars-form-stacked input[type="tel"],
+.ars-form-stacked input[type="color"],
+.ars-form-stacked select,
+.ars-form-stacked label,
+.ars-form-stacked textarea 
+{
+    display: block;
+    margin: 0.25em 0;
+}
+
+/*
+Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+since IE8 won't execute CSS that contains a CSS3 selector.
+*/
+.ars-form-stacked input:not([type]) 
+{
+    display: block;
+    margin: 0.25em 0;
+}
+
+/* Rounded Inputs */
+.ars-form input.ars-input-rounded,
+.ars-form .ars-input-rounded 
+{
+    border-radius: 2em;
+    padding: 0.5em 1em;
+}
+
+/* Grouped Inputs */
+.ars-form .ars-group fieldset 
+{
+    margin-bottom: 10px;
+}
+.ars-form .ars-group input 
+{
+    display: block;
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+    position: relative;
+    top: -1px;
+}
+.ars-form .ars-group input:focus 
+{
+    z-index: 2;
+}
+.ars-form .ars-group input:first-child 
+{
+    top: 1px;
+    border-radius: 4px 4px 0 0;
+}
+.ars-form .ars-group input:last-child 
+{
+    top: -2px;
+    border-radius: 0 0 4px 4px;
+}
+.ars-form .ars-group button 
+{
+    margin: 0.35em 0;
+}
+
+a
+{
+	color: rgb(73,173,255);
+	/*-webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -ms-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 2s ease-in-out;*/
+}
+
+a:link
+{
+	text-decoration:none;
+}
+
+a:hover
+{
+	color: black;
+	text-decoration:none;
+	/*-webkit-opacity: 0.25;
+    -moz-opacity: 0.25;
+    opacity: 0.25;*/
+}
+
+/* Footer */
+#footer
+{
+	position: absolute;
+    width: 100%;
+	bottom: 0px;
+    height: 60px;
+	background-color:rgb(73,173,255);	/*blau*/
+    -webkit-box-shadow: rgb(136, 136, 136) 3px 0px 0px 0px;
+    box-shadow: rgb(136, 136, 136) 3px 0px 0px 0px;
+}
+
+span
+{
+	color:rgb(255,255,255);
+    text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 1px;
+}
+
+#appMode
+span:hover,
+span:active
+{
+	color: black;
+}
+
+#appMode
+{
+	padding-top:15px; 
+	padding-right:15px; 
+	padding-left:15px; 
+}
+
+
+.menuItem
+{
+	width: 150px;
+	height: 150px;
+	text-align:center;
+  	border-radius: 80px;
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -75px;
+	background-color:rgb(73,173,255);	/*blau*/
+	color:white;
+}
+
+.ars-select
+{
+	
+	border-bottom-color: rgb(204, 204, 204);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-left-color: rgb(204, 204, 204);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-color: rgb(204, 204, 204);
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top-color: rgb(204, 204, 204);
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	background-color: white;
+	box-sizing: border-box;
+	color: grey;
+	display: inline-block;
+	font-size: 12px;
+	height: 28px;
+	width: 178px;
+}
