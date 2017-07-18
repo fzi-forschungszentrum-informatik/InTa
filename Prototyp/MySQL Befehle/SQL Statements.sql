@@ -73,7 +73,9 @@ CREATE TABLE answers (
     os TEXT,
     browser TEXT,
     country TEXT,
-    date TEXT
+    date TEXT,
+    hostname TEXT,
+    all_info TEXT
     );
     
 Erstellen der Tabelle representation_types

@@ -17,28 +17,23 @@
  
  /**
  * Quellcode-Beschreibung 
- * Die shwoTime2.php dient zum anzeigen der Fragen auf den mobilen Endgeräten. Hier werden zunächst die Daten der Interaktion aus der Datenbank
+ * Die shwoTime.php dient zum anzeigen der Fragen auf den mobilen Endgeräten. Hier werden zunächst die Daten der Interaktion aus der Datenbank
  * geladen und anschließend den Code-Block für den jeweiligen Fragetyp. Die unterschiedlichen jQuery mobile Pages zeigen die Willkommensseite,
  * falls Passwort aktiviert, die Passwortseite und die eigentliche Frageseite an. Duchr die checkPasswort Funktion wird
  * das eingegebene Passwort überprüft. Nach eingabe der Antworten werden diese über die sendAnswer Funktion
  * über die POST Methode an setData gesendet und dort durch die jeweilige SQL-Query in die Datenbank gespeichert.
  * Es werden noch weitere Daten wie IP und Hostname in der Datenbank gespeichert.
- *
- * Diese Datei ist genau wie die showTime.php wird jedoch für den Fragetyp MultiQuestion benutzt, bei dem mehrere Interaktionen zusammengefasst werden.
- * Hierbei sind noch zusätzliche jQuery mobile Pages, welche auf die unterschiedlichen Interaktionen verlinken.
  */
 
 // Bindet die db_connect.php ein zum Aufbau der Datenbankverbindung
 include_once 'includes/db_connect.php';
 
-$pollCount = $_GET["pollCount"];
-$pollPossibilities = explode(',',$_GET["pollPossibilities"]);
 // SQL-Query
 $stmt = $mysqli->prepare("SELECT type, question, title, password, settings  FROM interactions WHERE id = ? LIMIT 1");
 // Variablenübergabe an die SQL-Query
 $stmt->bind_param('s', $interaction_id);
 // Holt sich die in der URL mitgelieferte id und speichert sie in einer Variablen
-$interaction_id = $pollPossibilities[count($pollPossibilities)-$pollCount];
+$interaction_id = $_GET["id"];
 // Ausführung der Anfrage
 $stmt->execute();
 // Speichern der Ergebnisse aus der Anfrage
@@ -79,13 +74,13 @@ echo $title  .
     
     <!-- JavaScript-Files -->
     <script src="js/jquery-1.9.1.js" type="text/javascript"></script>
-	<script src="js/jquery.mobile-1.4.4.min.js" type="text/javascript"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
 	
 
     <!-- CSS-Files -->
 	<!-- <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" rel="stylesheet" /> -->
 	<link href="css/fonts_googleapis.css" rel="stylesheet" type="text/css" />
-	<link href="css/jquery.mobile-1.4.4.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="css/pure-min.css" rel="stylesheet" type="text/css" />    
 </head>
@@ -151,10 +146,7 @@ if ($password == NULL)
 
   <div data-role="main" class="ui-content">
     <center>
-	'; 
-// Gibt die ID aus
-echo '<p>Frage '.(count($pollPossibilities)-$pollCount+1).' von '.count($pollPossibilities).'</p>'.
-'
+	<p>Herzlich Willkommen zur Umfrage</p>
 	<a class="ui-btn ui-btn-inline" data-transition="none" href="#page_two">weiter</a>
 	</center>
   </div>
@@ -227,13 +219,19 @@ echo $codeblock_mobile .'
 
 sendAnswer = function(type)
 {
+	console.log($("#answer").val());
 	var timestamp = new Date();
   	var timestamp_read = timestamp.getTime();
+
+ 	var $_GET = {};
+	document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+    function decode(s) {
+        return decodeURIComponent(s.split("+").join(" "));
+    }
+    $_GET[decode(arguments[1])] = decode(arguments[2]);
+	});
 	
-	if((localStorage.getItem("send'; 
-// Gibt die ID aus
-echo $pollPossibilities[count($pollPossibilities)-$pollCount]  . 
-'")=="true") && (settings["only_one_answer"] == "true"))
+	if((localStorage.getItem("send"+$_GET["id"])=="true") && (settings["only_one_answer"] == "true"))
 	{
 		parent.location.href = "#page_six";
 		location.reload();
@@ -243,10 +241,7 @@ echo $pollPossibilities[count($pollPossibilities)-$pollCount]  .
 	
 	 $.post("setData.php",
   {
-	  	  id: '; 
-// Gibt die ID aus
-echo $pollPossibilities[count($pollPossibilities)-$pollCount]  . 
-',
+	  	  id: $_GET["id"],
 		  code: "answers",		  
 		  answer: $("#answer").val(),
 		  ip: "'; 
@@ -283,10 +278,7 @@ echo $lang  .
 	  if (status == "success")
 	  {
 		  console.log("Ihre Antwort wurde gespeichert.");
-		  localStorage.setItem("send'; 
-// Gibt die ID aus
-echo $pollPossibilities[count($pollPossibilities)-$pollCount]  . 
-'","true");
+		  localStorage.setItem("send"+$_GET["id"],"true");
 		  if(settings["only_one_answer"] == "true")
 		  {
 			parent.location.href = "#page_five";
@@ -334,13 +326,13 @@ echo $pollPossibilities[count($pollPossibilities)-$pollCount]  .
     <center>
 	<p>
 - Erweiterung von Standardpr&auml;sentationssoftware zur F&ouml;rderung der Publikumsinteraktion -<br />
-Institut f&uuml;r Angewandte Informatik<br />
+Institut für Angewandte Informatik<br />
 und Formale Beschreibungsverfahren<br />
-des Karlsruher Instituts f&uuml;r Technologie<br /><br />
+des Karlsruher Instituts für Technologie<br /><br />
 
 Referent: Prof. Dr. Andreas Oberweis<br />
 Betreuer: Dipl.-Inform.Wirt Sascha Alpers<br /><br /></p><br />
-<p><a href="#" class="ui-btn ui-btn-inline" data-transition="none" data-rel="back">zur&uuml;ck</a></p>
+<p><a href="#" class="ui-btn ui-btn-inline" data-transition="none" data-rel="back">zurück</a></p>
 	</center>
 	
   </div>
@@ -365,15 +357,7 @@ Betreuer: Dipl.-Inform.Wirt Sascha Alpers<br /><br /></p><br />
     <center>
 	<p>
 	Ihre Antwort wurde gesendet!<br \> (Sie k&ouml;nnen weitere Antworten einreichen, wenn Sie m&ouml;chten.)</p>
-	<p><a href="#" class="ui-btn ui-btn-inline" data-transition="none" data-rel="back">zur&uuml;ck</a></p>
-	'; 
-// Gibt die URL zur nächsten Frage aus
-if($pollCount == 1){
-echo '';}
-else
-{
-echo '<p><a href="'.'showTime2.php?pollPossibilities='.implode(",",$pollPossibilities).'&pollCount='.($pollCount-1).'" class="ui-btn ui-btn-inline" data-transition="none" rel="external">weiter zur n&auml;chsten Frage</a></p>';}
- echo'
+	<p><a href="#" class="ui-btn ui-btn-inline" data-transition="none" data-rel="back">zurück</a></p>
 	</center>
   </div>
 
@@ -397,14 +381,6 @@ echo '<p><a href="'.'showTime2.php?pollPossibilities='.implode(",",$pollPossibil
     <center>
 	<p>
 	Ihre Antwort wurde gesendet!<br \> (Sie k&ouml;nnen nur eine Antwort senden)</p>
-	'; 
-// Gibt die URL zur nächsten Frage aus
-if($pollCount == 1){
-echo '';}
-else
-{
-echo '<p><a href="'. constant("URL").'showTime2.php?pollPossibilities='.implode(",",$pollPossibilities).'&pollCount='.($pollCount-1).'" class="ui-btn ui-btn-inline" data-transition="none" rel="external">weiter zur n&auml;chsten Frage</a></p>';}
- echo'
 	</center>
   </div>
 
@@ -427,14 +403,6 @@ echo '<p><a href="'. constant("URL").'showTime2.php?pollPossibilities='.implode(
   <div data-role="main" class="ui-content">
     <center>
 	<p>Sie k&ouml;nnen keine weiteren Antworten senden.</p>
-	'; 
-// Gibt die URL zur nächsten Frage aus
-if($pollCount == 1){
-echo '';}
-else
-{
-echo '<p><a href="'. constant("URL").'showTime2.php?pollPossibilities='.implode(",",$pollPossibilities).'&pollCount='.($pollCount-1).'" class="ui-btn ui-btn-inline" data-transition="none" rel="external">weiter zur n&auml;chsten Frage</a></p>';}
- echo'
 	</center>
   </div>
 
@@ -449,13 +417,18 @@ echo $settings  .
 
 checkPassword = function()
 {
+	var $_GET = {};
+	document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+    function decode(s) {
+        return decodeURIComponent(s.split("+").join(" "));
+    }
+    $_GET[decode(arguments[1])] = decode(arguments[2]);
+});
+
 	$.post("getData.php",
     {
 		  code: "password",
-		  id: '; 
-// Gibt die ID aus
-echo $pollPossibilities[count($pollPossibilities)-$pollCount]  . 
-',
+		  id: $_GET["id"],
 		  password:  $("#password").val()
     },function(data,status)
 		 {

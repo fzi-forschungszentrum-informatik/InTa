@@ -131,9 +131,9 @@ a
     <center>
 	<p>Herzlich Willkommen zur Umfrage</p>
     <p>Geben Sie hier bitte die Umfrage-ID ein:</p>
-	<form>
+	<form onsubmit="goto()">
     	<input type="text" name="id" id="id">
-		<a class="ui-btn ui-btn-inline" data-transition="none" onClick="goto()">weiter</a>
+		<a class="ui-btn ui-btn-inline" data-transition="none" onclick="goto()">weiter</a>
 	</form>
 	</center>
   </div>
@@ -143,7 +143,8 @@ a
 goto = function()
 {
 	var id = $("#id").val();
-	window.location.href = "https://inta.fzi.de/inta/showTime.php?id="+id;
+	//window.location.href = "https://inta.fzi.de/inta/showTime.php?id="+id;
+	window.location.href = "showTime.php?id="+id;
 
 }
 </script>

@@ -29,11 +29,11 @@
  * These are the database login details
  */
 define("HOST", "localhost"); 			// The host you want to connect to. 
-define("USER", "root"); 			// The database username. 
-define("PASSWORD", "***************"); 	// The database password. 
+define("USER", "mysql"); 			// The database username. 
+define("PASSWORD", "****"); 	// The database password. 
 define("DATABASE", "inta");    // The database name.
-define("URL", "http://inta.fzi.de/");			// The url.
-define("MAIL", "*******************");		// The E-Mail.
+define("URL", "localhost");			// The url.
+define("MAIL", "fziuser@fzi.de");		// The E-Mail.
 
 /**
  * Who can register and what the default role will be

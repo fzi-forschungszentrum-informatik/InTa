@@ -105,7 +105,8 @@ $(document).ready(function ()
     "color": "#3a3",
     "text": "';
 	
-	echo 'https://inta.fzi.de/inta/showTime.php?id='.$interaction_id.'"
+	//echo 'https://inta.fzi.de/inta/showTime.php?id='.$interaction_id.'"
+	echo base_url() . 'showTime.php?id=' . $interaction_id.'"
 });
 });
 </script>

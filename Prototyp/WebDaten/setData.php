@@ -36,7 +36,7 @@
 
 // Bindet die db_connect.php ein zum Aufbau der Datenbankverbindung
 include_once 'includes/db_connect.php';
-include_once 'psl-config.php';
+include_once 'includes/psl-config.php';
 
 // Hier sind die unterschiedlichen DB Queries gespeichert, welche Daten in die Datenbank speichern, ändern oder löschen.
 // Löscht Interaktion und dazugehörige Antworten
@@ -86,6 +86,7 @@ elseif ($_POST['code'] == "answers")
 // SQL-Query
 $stmt = $mysqli->prepare("INSERT INTO answers (interactions_id, answer, ip, os, country, date, hostname, all_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); 
 // Variablenübergabe an die SQL-Query
+//error_log($_POST['id'] . "; " . $_POST['answer'] . "; " . $_POST['ip'] . "; " . $_POST['os'] . "; " . $_POST['country'] . "; " . $_POST['date'] . "; " . $_POST['hostname'] . "; " . $_POST['usrinfo']);
 $stmt->bind_param('isssssss',$_POST['id'], $_POST['answer'], $_POST['ip'], $_POST['os'], $_POST['country'], $_POST['date'], $_POST['hostname'], $_POST['usrinfo']);
 // Ausführung der Anfrage
 $stmt->execute();

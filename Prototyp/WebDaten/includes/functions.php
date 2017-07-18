@@ -214,3 +214,11 @@ function esc_url($url) {
         return $url;
     }
 }
+
+function base_url() {
+	$currentPath = $_SERVER['PHP_SELF'];
+	$host = $_SERVER['HTTP_HOST'];
+	$path = pathinfo($currentPath);
+
+	return $host.$path['dirname']."/";
+}

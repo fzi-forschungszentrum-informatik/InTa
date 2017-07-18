@@ -145,13 +145,19 @@ if ($password == NULL)
   </div>
 
   <div data-role="main" class="ui-content">
-    <center>
-	<p>Herzlich Willkommen zur Umfrage</p>
-	<a class="ui-btn ui-btn-inline" data-transition="none" href="#page_two">weiter</a>
+    <center>';
+if ($codeblock_mobile == NULL) {
+        echo('ID nicht gefunden. <br>');
+        echo('<a class="ui-btn ui-btn-inline" onclick="location.href=\'\index.php\'">Zurück</a>');
+} else {
+echo ('	<p>Herzlich Willkommen zur Umfrage</p>
+	<a class="ui-btn ui-btn-inline" data-transition="none" href="#page_two">weiter</a>');
+}
+echo('
 	</center>
   </div>
 
-</div>';
+</div>');
 }
 else
 {
