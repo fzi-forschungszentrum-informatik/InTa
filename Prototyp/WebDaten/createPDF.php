@@ -30,6 +30,7 @@ include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 require_once("includes/dompdf_config.inc.php");
 
+
 date_default_timezone_set('Europe/Berlin');
 $id = $_GET['id'];
 $data = str_replace(' ', '+', $_POST['bin_data']);
@@ -41,10 +42,10 @@ if ($im !== false) {
     // Save image in the specified location
     imagepng($im, $fileName);
     imagedestroy($im);
-    //echo "Saved successfully";
+    echo "Saved successfully";
 }
 else {
-    //echo 'An error occurred.';
+    echo 'An error occurred.';
 }
 
 // SQL-Query
@@ -61,6 +62,7 @@ $sql = 'SELECT * FROM answers WHERE interactions_id ='.$id;
 if(!$result = $mysqli->query($sql)){
     die('There was an error running the query [' . $mysqli->error . ']');
 }
+$answerData = "";
 while($row3 = $result->fetch_assoc())
 {
 	$answerData = $answerData. "ID: ".$row3['id']." Antwort: ".$row3['answer']." Datum: ".date('r', $row3['date'])."<br>";
@@ -133,23 +135,22 @@ $datei="statistics/statistik".$row['id'].".pdf";
 
 $mail_header = "From: ARS<".constant('MAIL').">"; 
 $boundary = strtoupper(md5(uniqid(time()))); 
-$mail_header .= "\nMIME-Version: 1.0"; 
-$mail_header .= "\nContent-Type: multipart/mixed; boundary=$boundary"; 
-$mail_header .= "\n\nThis is a multi-part message in MIME format  --  Dies ist eine mehrteilige Nachricht im MIME-Format"; 
-$mail_header .= "\n--$boundary"; 
-$mail_header .= "\nContent-Type: text/plain"; 
-$mail_header .= "\nContent-Transfer-Encoding: 8bit"; 
-$mail_header .= "\n\n$mail_content"; 
-$mail_header .= "\n--$boundary"; 
-$mail_header .= "\nContent-Disposition: attachment; filename=statistik".$row['id'].".pdf"; 
-$mail_header .= "\nContent-Type: application/pdf; name=statistik".$row['id'].".pdf"; 
-$mail_header .= "\nContent-Transfer-Encoding: base64"; 
+$mail_header .= "\r\nMIME-Version: 1.0"; 
+$mail_header .= "\r\nContent-Type: multipart/mixed; boundary=$boundary"; 
+$mail_header .= "\r\nThis is a multi-part message in MIME format  --  Dies ist eine mehrteilige Nachricht im MIME-Format"; 
+$mail_header .= "\r\n--$boundary"; 
+$mail_header .= "\r\nContent-Type: text/plain"; 
+$mail_header .= "\r\nContent-Transfer-Encoding: 8bit"; 
+$mail_header .= "\r\n$mail_content"; 
+$mail_header .= "\r\n--$boundary"; 
+$mail_header .= "\r\nContent-Disposition: attachment; filename=statistik".$row['id'].".pdf"; 
+$mail_header .= "\r\nContent-Type: application/pdf; name=statistik".$row['id'].".pdf"; 
+$mail_header .= "\r\nContent-Transfer-Encoding: base64"; 
 $file_content = chunk_split(base64_encode(file_get_contents($datei))); 
-$mail_header .= "\n\n$file_content"; 
-$mail_header .= "\n"; 
+$mail_header .= "\r\n$file_content"; 
+#$mail_header .= "\n"; 
 $mail_header .= "--$boundary--"; 
-mail($Empfaenger, $Betreff, $mail_content, $mail_header);
-
+var_dump(mail($Empfaenger, $Betreff, $mail_content, $mail_header));
 
 // Löscht die erstellten Dateien
 if (file_exists($filePath)) 
